@@ -1,0 +1,125 @@
+<style>
+    .loginsignupmainbody {
+        background-color: rgb(230, 225, 225);
+        width: 500px;
+        margin: 30px auto;
+        display: flex;
+        flex-direction: column;
+
+    }
+
+    .buttonsloginsignup {
+        width: 100%;
+        display: flex;
+    }
+
+    .signupbutton {
+        width: 50%;
+        height: 50px;
+    }
+
+    .loginsignupbutton {
+        width: 100%;
+        height: 50px;
+    }
+    .loginform {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .signupform {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .nonactiveform{
+        display: none;
+    }
+    .buttontextactive{
+        font-size: 22px;
+    }
+    
+</style>
+{% extends 'basic.html' %}
+{% block body %}
+<div class="loginsignupmainbody">
+    <div class="buttonsloginsignup">
+        <button class="loginsignupbutton"><p class="buttontext buttontextactive" style="display: inline-block;margin-right: 30%;">Login</p><p class="buttontext1" style="display: inline-block;">Signup</p></button>
+    </div>
+    <div class="loginformdiv">
+        <form action="/login/" method="POST" class="loginform">
+            {% csrf_token %}
+            <div style="margin: 20px auto;">
+                <label style="font-size: 20px;margin-right: 10px;" for="username">username</label>
+                <input type="text" name="username1">
+            </div>
+            <div style="margin: 5px auto;">
+                <label style="font-size: 20px;margin-right: 10px;" for="password">password</label>
+                <input type="text" name="password1">
+            </div>
+            <div>
+            <button style="margin-top: 15px;" type=" submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="signupformdiv nonactiveform">
+        <form action="/signup/" class="signupform" method="POST">
+            {% csrf_token %}
+            <div style="margin: 20px auto;">
+                <label style="font-size: 20px;margin-right: 10px;" for="username">username</label>
+                <input type="text" name="username">
+            </div>
+            <div style="margin: 5px auto;">
+                <label style="font-size: 20px;margin-right: 10px;" for="email">email</label>
+                <input type="text" name="email">
+            </div>
+            <div style="margin: 5px auto;">
+                <label style="font-size: 20px;margin-right: 10px;" for="firstname">firstname</label>
+                <input type="text" name="firstname">
+            </div>
+            <div style="margin: 5px auto;">
+                <label style="font-size: 20px;margin-right: 10px;" for="lastname">lastname</label>
+                <input type="text" name="lastname">
+            </div>
+            <div style="margin: 5px auto;">
+                <label style="font-size: 20px;margin-right: 10px;" for="password">password</label>
+                <input type="text" name="password">
+            </div>
+
+            <div>
+                <button style="margin-top: 15px;" type=" submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+.
+
+
+
+{% endblock body %}
+{% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+console.log("arggesfgvsfvbgfsgbfsg");
+$('.loginsignupbutton').click(function(){
+    var buts=document.querySelector(".buttontext");
+    buts.classList.toggle("buttontextactive");
+    var buts1=document.querySelector(".buttontext1");
+    buts1.classList.toggle("buttontextactive");
+    var elems=document.querySelector(".loginformdiv");
+    elems.classList.toggle("nonactiveform");
+
+ 
+    var elems2=document.querySelector(".signupformdiv");
+  
+    elems2.classList.toggle("nonactiveform");
+    
+
+});
+
+</script>
+{% endblock js %}

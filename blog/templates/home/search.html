@@ -1,0 +1,135 @@
+<style>
+    .mainblog {
+        text-align: left;
+    }
+    .siteinfo {
+        margin-bottom: 10px;
+        background-color: rgb(228, 227, 227);
+    }
+
+    .innermain {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .blogmaininner {
+        margin-top: 25px;
+
+        margin-bottom: 10px;
+        background-color: #0D6EFD;
+        border: none;
+        height: 40px;
+        /* width: 150px; */
+        text-align: center;
+        /* font-family: 'Nunito', sans-serif; */
+        cursor: pointer;
+    }
+
+    .blogmaininner a {
+        margin-left: 3px;
+        margin-right: 3px;
+        color: aliceblue;
+        font-family: 'Nunito', sans-serif;
+        letter-spacing: 1.5px;
+    }
+
+    .siteinfo .innermain h1 {
+        text-align: center;
+        font-size: 50px;
+        font-weight: 100;
+        letter-spacing: 1.5px;
+
+    }
+
+    .siteinfo .innermain p {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    .part50{
+        width: 70vw;
+        margin: 5px auto;
+    }
+    .part50>h2{
+        margin-bottom: 12px;
+        letter-spacing: 1.2px;
+        font-size: 30px;
+    }
+    .homeblogs{
+        align-items: center;
+        margin-top: 15px;
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+      
+    
+    }
+    .homeblogscardinner{
+        height: 12vw;
+        width: 48vw;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .homeblogscardinnerimages{
+        height: 12vw;
+        width: 18vw;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 22px;
+        color: blue;
+    }
+    .innertexthomecard{
+        font-size: 18px;
+    }
+    .homeblogstrending{
+        width: 100%;
+    }
+</style>
+{% extends 'basic.html' %}
+
+
+{% block homeactive %} active {% endblock homeactive %}
+{% block body %}
+<!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> -->
+
+<div class="mainblog">
+    <div class="part50">
+        {% if blogs|length > 0 %}
+        <h2>Search results :</h2>
+        <div class="homeblogstrending">
+
+        {% for blog in blogs %}
+        <div class="homeblogs">
+            <div class="homeblogscardinner">
+                <h2>{{blog.title}} by {{blog.author_name}}</h2>
+                <h3 class="innertexthomecard" >{{blog.subtitle}}</h3>
+                <p class="innertexthomecard" >{{blog.content | truncatechars:100}}</p>
+                <div class="innertexthomecard">
+                    <a href="/blog/{{blog.title}}" class="homeblogscardinnershorttextbutton">Continue reading</a>
+                </div>
+            </div>
+            {% load static %}
+            <img  class="homeblogscardinnerimages" src="/media/{{blog.image}}">
+            
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p style="margin-top: 15px;">Your Search  <b style="font-size: 20px;margin-left: 3px;">{{query}}</b>  -- did not match any documents</p>
+        <p style="margin-top: 10px;">Suggestions :</p>
+        <ul style="margin-top: 10px;margin-left: 20px;">
+            <li>Make sure that all words are spelled correctly.</li>
+            <li>Try different keywords.</li>
+            <li>Try more general keywords.</li>
+            <li>Try fewer keywords.</li>
+        </ul>
+
+    {% endif %}
+
+    </div>
+</div>
+{% endblock body %}

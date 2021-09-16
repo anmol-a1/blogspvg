@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Nav</title>
+</head>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+    }
+    .fa-heart{
+        color:red;
+        font-size:30px;
+    }
+
+    .navbar {
+        display: flex;
+        background-color: rgb(120, 224, 116);
+        height: 60px;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .blogslogol {
+        height: 60px;
+        width: 150px;
+    }
+
+    .listitems {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        list-style: none;
+    }
+    a{
+        color:black;
+        font-size: 22px;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 1.5px;
+    }
+    .listitem:hover{
+        font-size: 22px;
+        color: rgb(99, 96, 96);
+        cursor: pointer;
+    }
+
+    .blogslogor {
+        height: 60px;
+        width: 55px;
+        margin-right: 10px;
+    }
+    .active{
+        color:white;
+    }
+    .searchbuttonimage{
+        height: 28px;
+        width: 38px;
+        cursor: pointer;
+        border: 1px solid white;
+        padding: 0;
+        margin: 0;
+    }
+    .searchbutton{
+        background-color: rgb(120, 224, 116);
+        color: rgb(120, 224, 116);
+        height: 30px;
+        width: 40px;
+        cursor: pointer;
+        margin-left: 1vw;
+        opacity: 1;
+    }
+    .searchbox{
+        display: flex;
+        align-items: center;
+    }
+    .searchbarform{
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    .searchinputtext{
+        height: 30px;
+        width: 15vw;
+        border-radius: 10px;
+        padding-left: 10px;
+        
+    }
+    .searchinputtext:focus{
+        outline: none;
+        
+    }
+  
+   
+    @media(max-width:1400px) {
+        .searchbox{
+            display: none;
+        }
+        
+    }
+    @media (max-width:1000px) {
+        .searchbox{
+            display: block;
+        }
+        .listitems{
+            display: none;
+        }
+        .searchinputtext{
+        height: 30px;
+        width: 30vw;
+        border-radius: 10px;
+        padding-left: 10px;
+        }
+        
+    }
+    @media (max-width:700px) {
+        .searchbox{
+            display: block;
+        }
+        .listitems{
+            display: none;
+        }
+        .searchinputtext{
+        height: 30px;
+        width: 50vw;
+        border-radius: 10px;
+        padding-left: 10px;
+        }
+        .signup-login{
+            display: none
+        }
+        
+    }
+    @media (max-width:500px) {
+        .searchbox{
+            display: block;
+            margin-right: 5px;
+        }
+        .listitems{
+            display: none;
+        }
+        .searchinputtext{
+        height: 30px;
+        width: 50vw;
+        border-radius: 10px;
+        padding-left: 10px;
+        }
+        .signup-login{
+            display: none
+        }
+        .blogslogol{
+            height: 60;
+            width: 60;
+        }
+        .blogslogor{
+            display: none;
+        }
+        
+    }
+    
+</style>
+    <nav class="navbar">
+        {% load static %}
+        <img  class="blogslogol" src="{% static 'home/blogslogo.jfif' %}">
+        <ul class="listitems">
+            <li class="listitem"><a class="{% block homeactive%}{% endblock homeactive%}" href="/">Home</a></li>
+            <li class="listitem"><a class="{% block contactactive%}{% endblock contactactive%}" href="/contact/">Contact</a></li>
+            <li class="listitem"><a class="{% block aboutactive%}{% endblock aboutactive%}" href="/about/">About</a></li>
+            <li class="listitem"><a class="{% block myblogsactive%}{% endblock myblogsactive%}" href="/myblogs/">My Blogs</a></li>
+            <li class="listitem"><a class="{% block trendingactive%}{% endblock trendingactive%}" href="/trending/">Trending</a></li>
+        </ul>
+        <!-- <div class="searchboxouter"> -->
+        
+        <div class="searchbox">
+            <form class="searchbarform" action="/search" method="get">
+                {% csrf_token %}
+            <input class="searchinputtext" type="text" name="query" id="query" placeholder="search" >
+            {% load static %}
+            <button type="submit" class="searchbutton"> <img  class="searchbuttonimage" src="{% static 'home/search.png' %}"></button>
+            </form>
+        </div>
+        <!-- </div> -->
+        {% if user.is_authenticated %}
+        <form action="/logout/" method="POST">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+
+        {% else %}
+         <button class="button signup-login signup login" ><a href="/loginsignup">signup/login</a></button>
+        {% endif %}
+         
+        <!-- <button><a href="/login"></a></button> -->
+        {% load static %}
+        <img  class="blogslogor" src="{% static 'home/blog.png' %}">
+    </nav>
+{% block body %} {% endblock body %}
+
+
+{% block js %}{% endblock js %}
+ 
+
+
+
+</html>
+    
+   

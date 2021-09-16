@@ -1,0 +1,328 @@
+<style>
+    *{
+        margin: 0px;
+        padding: 0px;
+    }
+
+    /* .blogmaininner a {
+        margin-left: 3px;
+        margin-right: 3px;
+        color: aliceblue;
+        font-family: 'Nunito', sans-serif;
+        letter-spacing: 1.5px;
+    } */
+
+    /* .siteinfo .innermain h1 {
+        text-align: center;
+        font-size: 50px;
+        font-weight: 100;
+        letter-spacing: 1.5px;
+
+    } */
+
+    /* .siteinfo .innermain p {
+        font-size: 20px;
+        margin-top: 15px;
+    } */
+
+    .part50{
+        width: 70vw;
+        margin: 5px auto;
+    }
+    .part50>h2{
+        margin-bottom: 12px;
+        letter-spacing: 1.2px;
+        font-size: 30px;
+    }
+    .homeblogs{
+        margin-top: 5px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+    }
+    .homeblogs1{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 5px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+       }
+    .homeblogscardinner{
+        width: 48vw;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .homeblogscardinnerimages{
+        height: 12vw;
+        width: 18vw;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 22px;
+        color: blue;
+    }
+    .formdivcontainer-comment{
+        margin-top: 15px;
+    }
+    .innertexthomecard{
+        font-size: 18px;
+    }
+    .homeblogstrending{
+        width: 100%;
+    }
+    .comments{
+        margin-top:10px;
+        width:100%;
+        display:flex;
+    }
+    .commentimage{
+        height:60px;
+        width:60px;
+        background-color:white;
+    }
+    .commentcontent{
+        display:flex;
+        flex-direction: column;
+        align-items:left;
+        margin-left: 15px;
+    }
+    .commenttext{
+        font-size:16px;
+    }
+    .blogheader{
+        display: flex;
+    }
+    .formdivlike{
+        position: relative;
+        display: flex;
+        margin-left: 10px;
+        color: red;
+    }
+
+    .likebutton{
+        position: fixed;
+        opacity: 0;
+    }
+    .liketag{
+        font-size: 24px;
+        cursor: pointer;
+    }
+    .commentsnone{
+        display: block;
+    }
+    @media (max-width:1100px){
+        .part50{
+        width: 90vw;
+        margin: 5px auto;
+        }
+        .homeblogs{
+        margin-top: 5px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+       }
+        .homeblogs1{
+        flex-direction: column;
+        margin-top: 10px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+       }
+    .homeblogscardinner{
+        width: 70vw;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .homeblogscardinnerimages{
+        height: 100px;
+        width: 150px;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 18px;
+        color: blue;
+    }
+    .innertexthomecard{
+        font-size: 16px;
+    }
+    }
+    @media (max-width:770px){
+        .part50{
+        width: 100vw;
+        margin: 5px auto;
+        }
+        .homeblogs{
+        margin-top: 5px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+       }
+        .homeblogs1{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 5px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+       }
+    .homeblogscardinner{
+        width: 70vw;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: auto;
+    }
+    .homeblogscardinnerimages{
+        height: 100px;
+        width: 150px;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 16px;
+        color: blue;
+    }
+    .innertexthomecard{
+        font-size: 16px;
+    }
+    .homeblogs  .homeblogscardinner h2,h3{
+        font-size: 18px;
+    }
+    }
+    @media (max-width:500px){
+        .part50{
+        width: 100vw;
+        margin: 5px auto;
+        }
+        .homeblogs{
+        margin-top: 5px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+       }
+        .homeblogs1{
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        padding: 5px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+       }
+    .homeblogscardinner{
+        width: 70vw;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        height: auto;
+    }
+    .homeblogscardinnerimages{
+        height: 100px;
+        width: 150px;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 14px;
+        color: blue;
+    }
+    .innertexthomecard{
+        font-size: 14px;
+    }
+    .homeblogs  .homeblogscardinner h2,h3{
+        font-size: 16px;
+    }
+    }
+</style>
+
+
+{% extends 'basic.html' %}
+{% block body %}
+{% load humanize %}
+<div class="mainblog">
+    <div class="part50">
+        <div class="homeblogstrending">
+
+        <div class="homeblogs1">  
+        <div class="homeblogs">
+            <div class="homeblogscardinner">
+                <div class="blogheader">
+                <h2>{{post.title}}  (<span>{{post.views}} views</span>)</h2>
+                </div>
+                <h2>Auhor Name : {{post.author_name}}</h2>
+                <form method="GET" class="formdivlike" action="/bloglikes/{{post.title}}">
+                    {% csrf_token %}
+                    <p class="liketag" >&#10084;  {{post.likes}}</p>
+                    <button class="likebutton" type="submit">Anm</button>
+                    
+                </form>
+                
+                <h3 class="innertexthomecard" >{{post.subtitle}}</h3>
+                
+            </div>
+            {% load static %}
+            <img  class="homeblogscardinnerimages" src="/media/{{post.image}}">
+            
+        </div>
+        <p class="innertexthomecard" >{{post.content}}</p>
+    </div>  
+        {% if user.is_authenticated %}
+        <form action="/blog/postcomment/" method="post" class="formdivcontainer-comment">
+            {% csrf_token %}
+            <input type="text" name="comment" placeholder="write your comment here">
+            <input type="text" style="display: none;" name="postidno" value="{{post.idno}}" placeholder="write your comment here">
+            <button type="submit">Post Comment</button>        
+        </form>
+        {% else %}
+             <p style="margin-top: 15px;" >Please Login to post comment</p>
+        {% endif %}
+        {% if comments.count < 1 %}
+            <h2 style="margin-top: 10px;">No Comments Yet</h2>
+        {% else %}
+        
+        <h2 style="margin-top: 15px;margin-bottom: 15px;">Comments ({{comments.count}}):</h2>
+        <button class="showcommentbutton" id="showcommentbutton" onclick="myFunction()">Show Comments</button> 
+        <div id="comments" style="display: none;">
+        {% for comment in  comments%}
+        <div class="comments" >
+            
+            {% load static %}
+            <img class="commentimage" src="{% static 'home/commentuser.png' %}">
+            
+            <div class="commentcontent">
+            <h3>By {{comment.user}} : {{comment.timestamp | naturaltime }}</h3>
+            <p class="commenttext">{{comment.comment}}</p>
+            
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+        {% endif %}
+       
+    </div>
+
+    </div>
+</div>
+{% endblock body %}
+
+{% block js %}
+<script>
+function myFunction() {
+    var comment = document.getElementById("comments");
+    var x = document.getElementById("showcommentbutton");
+    if (comment.style.display === "none") {
+      comment.style.display = "block";
+      x.innerHTML=`<p>Hide Comments<p/>`;
+    } else {
+      comment.style.display = "none";
+      x.innerHTML=`<p>Show Comments<p/>`;
+    }
+  }
+</script>
+
+{% endblock js %}

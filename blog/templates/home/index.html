@@ -1,0 +1,219 @@
+<style>
+    .mainblog {
+        text-align: left;
+    }
+    .siteinfo {
+        margin-bottom: 10px;
+        background-color: rgb(228, 227, 227);
+    }
+
+    .innermain {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .blogmaininner {
+        margin-top: 25px;
+
+        margin-bottom: 10px;
+        background-color: #0D6EFD;
+        border: none;
+        height: 40px;
+        /* width: 150px; */
+        text-align: center;
+        /* font-family: 'Nunito', sans-serif; */
+        cursor: pointer;
+    }
+
+    .blogmaininner a {
+        margin-left: 3px;
+        margin-right: 3px;
+        color: aliceblue;
+        font-family: 'Nunito', sans-serif;
+        letter-spacing: 1.5px;
+    }
+
+    .siteinfo .innermain h1 {
+        text-align: center;
+        font-size: 50px;
+        font-weight: 100;
+        letter-spacing: 1.5px;
+
+    }
+
+    .siteinfo .innermain p {
+        font-size: 20px;
+        margin-top: 15px;
+    }
+
+    .part50{
+        width: 70vw;
+        margin: 5px auto;
+    }
+    .part50>h2{
+        margin-bottom: 12px;
+        letter-spacing: 1.2px;
+        font-size: 30px;
+    }
+    .homeblogs{
+        align-items: center;
+        margin-top: 15px;
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+      
+    
+    }
+    .homeblogscardinner{
+        height: 12vw;
+        width: 48vw;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .homeblogscardinnerimages{
+        height: 12vw;
+        width: 18vw;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 22px;
+        color: blue;
+    }
+    .innertexthomecard{
+        font-size: 18px;
+    }
+    .homeblogstrending{
+        width: 100%;
+    }
+    .asd{
+        display: none;
+    }
+    @media (max-width:1100px){
+        .part50{
+        width: 90vw;
+        margin: 5px auto;
+        }
+        .homeblogs{
+        align-items: center;
+        margin-top: 10px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+      
+    
+    }
+    .homeblogscardinner{
+        width: 70vw;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+    .homeblogscardinnerimages{
+        height: 100px;
+        width: 150px;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 18px;
+        color: blue;
+    }
+    .innertexthomecard{
+        font-size: 16px;
+    }
+    }
+    @media (max-width:770px){
+        .part50{
+        width: 100vw;
+        margin: 5px auto;
+        }
+        .homeblogs{
+        align-items: center;
+        margin-top: 10px;
+        display: flex;
+        width: 100%;
+        padding: 5px;
+        border: 0.5px solid grey;
+        border-radius: 5px;
+      
+    
+    }
+    .homeblogscardinner{
+        width: 70vw;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        height: auto;
+    }
+    .homeblogscardinnerimages{
+        height: 100px;
+        width: 150px;
+        display: inline-block;
+    }
+    .innertexthomecard .homeblogscardinnershorttextbutton{
+        font-size: 16px;
+        color: blue;
+    }
+    .innertexthomecard{
+        font-size: 16px;
+    }
+    .homeblogs  .homeblogscardinner h2,h3{
+        font-size: 18px;
+    }
+    }
+</style>
+
+{% extends 'basic.html' %}
+
+
+{% block homeactive %} active {% endblock homeactive %}
+{% block body %}
+<div class="mainblog">
+    <p class="asd">gbchcuhvk</p>
+    <div class="part50">
+        <div class="siteinfo">
+            <div class="innermain">
+                <h1>cscsdcscsdc</h1>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nihil, magni repellat necessitatibus odit
+                    similique hic laudantium quaerat officia tenetur error ex harum quae expedita dolorum corporis amet
+                    aut
+                    sunt cupiditate.</p>
+                <br>
+                <br>
+                <hr>
+                <br>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laboriosam adipisci, nihil minus repellat
+                    vitae, qui officiis earum rerum eum delectus doloremque hic corrupti harum beatae odio iusto cumque
+                    illo
+                    repudiandae!</p>
+                <button class="blogmaininner"><a href="/myblogs/">Go to Blogs</a></button>
+            </div>
+        </div>
+        <h2>Popular Blogspots</h2>
+        <div class="homeblogstrending">
+
+        {% for blog in blogs %}
+        <div class="homeblogs">
+            <div class="homeblogscardinner">
+                <h2>{{blog.title}} by {{blog.author_name}} <p style="display: inline-block;margin-left: 20px;color:red" >&#10084;  {{blog.likes}}</p></h2>
+                <h3 class="innertexthomecard" >{{blog.subtitle}}</h3>
+                <p class="innertexthomecard" >{{blog.content | truncatechars:100}}</p>
+                <div class="innertexthomecard">
+                    <a href="/blog/{{blog.title}}" class="homeblogscardinnershorttextbutton">Continue reading</a>
+                </div>
+            </div>
+            {% load static %}
+            <img  class="homeblogscardinnerimages" src="/media/{{blog.image}}">
+            
+        </div>
+        {% endfor %}
+        
+    </div>
+
+    </div>
+</div>
+{% endblock body %}
