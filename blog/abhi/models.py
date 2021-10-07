@@ -23,8 +23,11 @@ class Blogposts(models.Model):
     views=models.IntegerField(default=0)
     likes=models.IntegerField(default=0)
     image=models.ImageField(upload_to="home/images",default="")
+    username=models.CharField(max_length=100,default="")
     def __str__(self) -> str:
         return 'blog from '+self.title+' - '+self.subtitle
+    class Meta:
+        db_table = 'abhi_blogposts'
 class BlogComment(models.Model):
     sno=models.AutoField(primary_key=True)
     comment=models.TextField()

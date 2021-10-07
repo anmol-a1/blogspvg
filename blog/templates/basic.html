@@ -2,6 +2,31 @@
 <html lang="en">
 
 <head>
+    <script
+    type="text/javascript"
+    src='https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'
+    referrerpolicy="origin">
+    </script>
+    <script type="text/javascript">
+        tinymce.init({
+            selector: '#myTextarea',
+            width: 600,
+            height: 300,
+            plugins: [
+                'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+                'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                'table emoticons template paste help'
+            ],
+            toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+                'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+                'forecolor backcolor emoticons | help',
+            menu: {
+                favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+            },
+            menubar: 'favs file edit view insert format tools table help',
+            content_css: 'css/content.css'
+        });
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,25 +39,28 @@
 </head>
 
 <style>
-
     * {
         margin: 0;
+  
         padding: 0;
         box-sizing: border-box;
         font-family: 'Roboto', sans-serif;
+  
     }
-    .fa-heart{
-        color:red;
-        font-size:30px;
+
+    .fa-heart {
+        color: red;
+        font-size: 30px;
     }
 
     .navbar {
         display: flex;
-        background-color: rgb(120, 224, 116);
+        background-color: #00FFFF;
         height: 60px;
         width: 100%;
         align-items: center;
         justify-content: space-between;
+        overflow: hidden;
     }
 
     .blogslogol {
@@ -40,34 +68,48 @@
         width: 150px;
     }
 
+
     .listitems {
         display: flex;
         justify-content: space-between;
         width: 50%;
         list-style: none;
+        z-index: 5;
     }
-    a{
-        color:black;
+
+    a {
+        color: black;
         font-size: 22px;
         cursor: pointer;
         text-decoration: none;
         letter-spacing: 1.5px;
     }
-    .listitem:hover{
+
+    .listitem:hover {
         font-size: 22px;
         color: rgb(99, 96, 96);
         cursor: pointer;
     }
 
+    .listitems li a:hover {
+        color: white;
+        font-size: 22px;
+        cursor: pointer;
+        text-decoration: none;
+        letter-spacing: 1.5px;
+    }
+
     .blogslogor {
         height: 60px;
         width: 55px;
-        margin-right: 10px;
+        
     }
-    .active{
-        color:white;
+
+    .active {
+        color: white;
     }
-    .searchbuttonimage{
+
+    .searchbuttonimage {
         height: 28px;
         width: 38px;
         cursor: pointer;
@@ -75,147 +117,465 @@
         padding: 0;
         margin: 0;
     }
-    .searchbutton{
+
+    .searchbutton {
         background-color: rgb(120, 224, 116);
         color: rgb(120, 224, 116);
         height: 30px;
         width: 40px;
         cursor: pointer;
-        margin-left: 1vw;
+        margin-left: 10px;
         opacity: 1;
     }
-    .searchbox{
+
+    .searchbox {
         display: flex;
         align-items: center;
     }
-    .searchbarform{
+
+    .searchbarform {
         display: flex;
         align-items: center;
         position: relative;
     }
-    .searchinputtext{
+
+    .searchinputtext {
         height: 30px;
         width: 15vw;
         border-radius: 10px;
         padding-left: 10px;
-        
+
     }
-    .searchinputtext:focus{
+
+    .searchinputtext:focus {
         outline: none;
-        
+
     }
-  
-   
+
+    .burger-lines {
+        display: none;
+        margin-right: 5px;
+        height: 42px;
+        width: 35px;
+        flex-direction: column;
+        justify-content: space-between;
+        background-color: black;
+        align-items: center;
+        padding: 10px 5px;
+        cursor: pointer;
+    }
+
+    .line {
+        height: 4px;
+        width: 25px;
+        background-color: aliceblue;
+    }
+
+
+    /* form errors and request messages and alerts */
+    .badge-light {
+        background-color: #28e2e2;
+    }
+
+    .errorlist {
+        list-style: none;
+        padding-left: 0px;
+        opacity: 0.8;
+        color: #dc3545;
+        font-size: 12px;
+    }
+
+    .msg {
+        margin: 0 !important;
+        margin-bottom: 0px !important;
+        margin-top: 0px !important;
+    }
+
+    .messages {
+
+        z-index: 100;
+        list-style: none;
+        text-align: center;
+    }
+
+    .alert {
+        padding-top: 5px;
+        width: 100vw;
+        background-color: red;
+        height: 30px;
+    }
+
+    .alert-error {
+        background-color: red;
+        height: 30px;
+    }
+
+    .alert-success {
+        background-color: greenyellow;
+        height: 30px;
+    }
+
+    .mediashares{
+        display: flex;
+        width: 300px;
+        margin: 0px auto;
+        align-items: center;
+
+    }
+    .shareicon{
+        height: 40px;
+        width: 40px;
+    }
+    .shareicondiv{
+        margin: 0px 20px;
+        height: 50px;
+        width: 50px;
+    }
     @media(max-width:1400px) {
-        .searchbox{
+        .searchbox {
             display: none;
         }
-        
+
     }
+
     @media (max-width:1000px) {
-        .searchbox{
+        .burger-lines {
+            display: flex;
+        }
+
+        .searchbox {
             display: block;
         }
-        .listitems{
+
+        .listitems {
+            position: fixed;
+            top: 60px;
+            flex-direction: column;
+            width: 90%;
+            left: 5%;
+            margin: 5px auto;
+            padding: 10px 40px;
+            background-color: aqua;
             display: none;
+            justify-content: space-around;
+            align-items: left;
         }
-        .searchinputtext{
-        height: 30px;
-        width: 30vw;
-        border-radius: 10px;
-        padding-left: 10px;
+
+        .listitems li:not(:last-child) {
+            border-bottom: 1px solid #2cba6c;
+            padding-bottom: 10px;
+            padding-top: 10px;
         }
-        
+
+        .listitems li:last-child {
+            padding-bottom: 5px;
+            padding-top: 10px;
+        }
+
+        a {
+            color: black;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .listitems li a:hover {
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .searchinputtext {
+            height: 30px;
+            width: 30vw;
+            border-radius: 10px;
+            padding-left: 10px;
+        }
+
     }
+
     @media (max-width:700px) {
-        .searchbox{
-            display: block;
+        .blogslogol {
+            height: 60px;
+            width: 90px;
         }
-        .listitems{
+
+        .burger-lines {
+            display: flex;
+            margin-right: 10px;
+            z-index: 5;
+        }
+
+        .searchbarform {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .listitems {
+            position: fixed;
+            top: 60px;
+            flex-direction: column;
+            width: 90%;
+            left: 5%;
+            margin: 5px auto;
+            padding: 10px 40px;
+            background-color: aqua;
             display: none;
+            justify-content: space-around;
+            align-items: left;
         }
-        .searchinputtext{
-        height: 30px;
-        width: 50vw;
-        border-radius: 10px;
-        padding-left: 10px;
+
+        .listitems li:not(:last-child) {
+            border-bottom: 1px solid #2cba6c;
+            padding-bottom: 10px;
+            padding-top: 10px;
         }
-        .signup-login{
+
+        .listitems li:last-child {
+            padding-bottom: 5px;
+            padding-top: 10px;
+        }
+
+        a {
+            color: black;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .listitems li a:hover {
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .searchinputtext {
+            height: 30px;
+            width: 230px;
+            border-radius: 10px;
+            padding-left: 10px;
+        }
+
+        .signup-login {
             display: none
         }
-        
+
     }
+
     @media (max-width:500px) {
-        .searchbox{
-            display: block;
+        .searchbarform {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .burger-lines {
+            display: flex;
+            z-index: 5;
             margin-right: 5px;
         }
-        .listitems{
+
+        .listitems {
+            position: fixed;
+            top: 60px;
+            flex-direction: column;
+            width: 90%;
+            left: 5%;
+            transform: translateY(-110%);
+            transition: transform 2s ease-in-out;
+            margin: 5px auto;
+            padding: 10px 40px;
+            background-color: aqua;
             display: none;
+            justify-content: space-around;
+            align-items: left;
         }
-        .searchinputtext{
-        height: 30px;
-        width: 50vw;
-        border-radius: 10px;
-        padding-left: 10px;
+
+        .listitems li:not(:last-child) {
+            border-bottom: 1px solid #2cba6c;
+            padding-bottom: 10px;
+            padding-top: 10px;
         }
-        .signup-login{
+
+        .listitems li:last-child {
+            padding-bottom: 5px;
+            padding-top: 10px;
+        }
+
+        a {
+            color: black;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .listitems li a:hover {
+            color: white;
+            font-size: 22px;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 1.5px;
+        }
+
+        .searchinputtext {
+            height: 30px;
+            width: 150px;
+            border-radius: 10px;
+            padding-left: 5px;
+        }
+
+        .signup-login {
             display: none
         }
-        .blogslogol{
+
+        .blogslogol {
             height: 60;
             width: 60;
         }
-        .blogslogor{
+
+        .blogslogor {
             display: none;
         }
-        
-    }
-    
-</style>
-    <nav class="navbar">
-        {% load static %}
-        <img  class="blogslogol" src="{% static 'home/blogslogo.jfif' %}">
-        <ul class="listitems">
-            <li class="listitem"><a class="{% block homeactive%}{% endblock homeactive%}" href="/">Home</a></li>
-            <li class="listitem"><a class="{% block contactactive%}{% endblock contactactive%}" href="/contact/">Contact</a></li>
-            <li class="listitem"><a class="{% block aboutactive%}{% endblock aboutactive%}" href="/about/">About</a></li>
-            <li class="listitem"><a class="{% block myblogsactive%}{% endblock myblogsactive%}" href="/myblogs/">My Blogs</a></li>
-            <li class="listitem"><a class="{% block trendingactive%}{% endblock trendingactive%}" href="/trending/">Trending</a></li>
-        </ul>
-        <!-- <div class="searchboxouter"> -->
-        
-        <div class="searchbox">
-            <form class="searchbarform" action="/search" method="get">
-                {% csrf_token %}
-            <input class="searchinputtext" type="text" name="query" id="query" placeholder="search" >
-            {% load static %}
-            <button type="submit" class="searchbutton"> <img  class="searchbuttonimage" src="{% static 'home/search.png' %}"></button>
-            </form>
-        </div>
-        <!-- </div> -->
-        {% if user.is_authenticated %}
-        <form action="/logout/" method="POST">
-            {% csrf_token %}
-            <button type="submit">Logout</button>
-        </form>
 
-        {% else %}
-         <button class="button signup-login signup login" ><a href="/loginsignup">signup/login</a></button>
+        .searchbutton {
+            background-color: rgb(120, 224, 116);
+            color: rgb(120, 224, 116);
+            height: 30px;
+            width: 40px;
+            cursor: pointer;
+            margin-left: 10px;
+            opacity: 1;
+        }
+
+    }
+</style>
+<nav class="navbar">
+    {% load static %}
+    <img class="blogslogol" src="{% static 'home/logo.jpg' %}">
+    <ul class="listitems" id="listitems">
+        <li class="listitem"><a class="{% block homeactive%}{% endblock homeactive%}" href="/">Home</a></li>
+        <li class="listitem"><a class="{% block contactactive%}{% endblock contactactive%}" href="/contact/">Contact</a>
+        </li>
+        <li class="listitem"><a class="{% block aboutactive%}{% endblock aboutactive%}" href="/about/">About</a></li>
+        <li class="listitem"><a class="{% block myblogsactive%}{% endblock myblogsactive%}" href="/myblogs/">My
+                Blogs</a></li>
+        <li class="listitem"><a class="{% block trendingactive%}{% endblock trendingactive%}"
+                href="/trending/">Trending</a></li>
+    </ul>
+    <!-- <div class="searchboxouter"> -->
+
+    <div class="searchbox">
+        <form class="searchbarform" action="/search" method="get">
+            {% csrf_token %}
+            <input class="searchinputtext" type="text" name="query" id="query" placeholder="search">
+            {% load static %}
+            <button type="submit" class="searchbutton"> <img class="searchbuttonimage"
+                    src="{% static 'home/search.png' %}"></button>
+        </form>
+    </div>
+    <!-- </div> -->
+    {% if user.is_authenticated %}
+    <form action="/logout/" method="POST">
+        {% csrf_token %}
+        <button type="submit" style="background-color: #28e2e2;border: none;">Logout</button>
+    </form>
+
+    {% else %}
+    <button style="background-color: #28e2e2;border: none;" class="button signup-login signup login"><a
+            href="/loginsignup">signup | login</a></button>
+    {% endif %}
+    <div class="burger-lines" onclick="myfunction1()" id="burgermenu">
+        <span class="line line1"></span>
+        <span class="line line2"></span>
+        <span class="line line3"></span>
+    </div>
+
+    <!-- <button><a href="/login"></a></button> -->
+    {% load static %}
+    <img class="blogslogor" src="{% static 'home/blog.png' %}">
+</nav>
+{% block messages %}
+<div class="messagesdiv">
+    <ul class="messages" id="messages-list">
+        {% if messages %}
+        {% for message in messages %}
+        <li>
+            {% if message.tags %}
+            <div class="alert alert-{{ message.tags }} msg fade show" role="alert">{{ message }}</div>
+            {% else %}
+            <div class="alert alert-info msg fade show" role="alert">{{ message }}</div>
+            {% endif %}
+        </li>
+        {% endfor %}
+        <button style="position: fixed;top: 60;right: 0;height: 30px;" class="removemsgbutton">Remove</button>
         {% endif %}
-         
-        <!-- <button><a href="/login"></a></button> -->
-        {% load static %}
-        <img  class="blogslogor" src="{% static 'home/blog.png' %}">
-    </nav>
+    </ul>
+</div>
+
+{% endblock %}
 {% block body %} {% endblock body %}
 
+{% block footer %}{% endblock footer %}
 
+<script
+type="text/javascript"
+src='https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js'
+referrerpolicy="origin">
+</script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: '#myTextarea',
+        width: 600,
+        height: 300,
+        plugins: [
+            'advlist autolink link image lists charmap print preview hr anchor pagebreak',
+            'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+            'table emoticons template paste help'
+        ],
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | ' +
+            'bullist numlist outdent indent | link image | print preview media fullscreen | ' +
+            'forecolor backcolor emoticons | help',
+        menu: {
+            favs: { title: 'My Favorites', items: 'code visualaid | searchreplace | emoticons' }
+        },
+        menubar: 'favs file edit view insert format tools table help',
+        content_css: 'css/content.css'
+    });
+</script>
+
+<script>
+    console.log("hii")
+    let msglist = document.getElementById("messages-list");
+    let btn = document.querySelector(".removemsgbutton");
+    btn.addEventListener('click', () => {
+        console.log("clicked");
+        msglist.style.display = "none";
+    });
+
+    function myfunction1() {
+        var elem = document.getElementById("listitems");
+        if (elem.style.display === "none") {
+            elem.style.display = "flex";
+            elem.style.transform = "translateY(0%)";
+            elem.style.transition = "transform 2s ease-in-out";
+        } else {
+            elem.style.transform = "translateY(-110%)";
+            elem.style.transition = "transform 2s ease-in-out";
+            elem.style.display = "none";
+        }
+    }
+</script>
 {% block js %}{% endblock js %}
- 
+
 
 
 
 </html>
-    
-   

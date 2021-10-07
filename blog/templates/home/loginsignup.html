@@ -7,16 +7,16 @@
         flex-direction: column;
 
     }
-
+/* 
     .buttonsloginsignup {
         width: 100%;
         display: flex;
-    }
+    } */
 
-    .signupbutton {
+    /* .signupbutton {
         width: 50%;
         height: 50px;
-    }
+    } */
 
     .loginsignupbutton {
         width: 100%;
@@ -55,41 +55,40 @@
                 <label style="font-size: 20px;margin-right: 10px;" for="username">username</label>
                 <input type="text" name="username1">
             </div>
-            <div style="margin: 5px auto;">
+            <div style="margin: 12px auto;;">
                 <label style="font-size: 20px;margin-right: 10px;" for="password">password</label>
                 <input type="text" name="password1">
             </div>
+            <div style="text-align: left;width: 250px;margin-top: 12px;margin-bottom: 10px;" >
+            <a style="color: blue;font-size: 18px;cursor: pointer;" href="/forgotpassword">Forgot password</a>
+            </div>
             <div>
-            <button style="margin-top: 15px;" type=" submit">Submit</button>
+            <button style="margin-top: 15px;background-color: aqua;height: 30px;width: 90px;font-size: 20px;margin-bottom: 15px;cursor: pointer;" type=" submit">Submit</button>
             </div>
         </form>
     </div>
     <div class="signupformdiv nonactiveform">
         <form action="/signup/" class="signupform" method="POST">
             {% csrf_token %}
-            <div style="margin: 20px auto;">
-                <label style="font-size: 20px;margin-right: 10px;" for="username">username</label>
+            <div style="margin: 8px auto;width: 90%;text-align: center;">
+                <label style="font-size: 20px;margin-right: 20px;" for="username">username</label>
                 <input type="text" name="username">
             </div>
-            <div style="margin: 5px auto;">
-                <label style="font-size: 20px;margin-right: 10px;" for="email">email</label>
+            <div style="margin: 8px auto;width: 90%;text-align: center;">
+                <label style="font-size: 20px;margin-right: 60px;" for="email">email</label>
                 <input type="text" name="email">
             </div>
-            <div style="margin: 5px auto;">
-                <label style="font-size: 20px;margin-right: 10px;" for="firstname">firstname</label>
+            <div style="margin: 8px auto;width: 90%;text-align: center;">
+                <label style="font-size: 20px;margin-right: 55px;" for="firstname">Name</label>
                 <input type="text" name="firstname">
             </div>
-            <div style="margin: 5px auto;">
-                <label style="font-size: 20px;margin-right: 10px;" for="lastname">lastname</label>
-                <input type="text" name="lastname">
-            </div>
-            <div style="margin: 5px auto;">
-                <label style="font-size: 20px;margin-right: 10px;" for="password">password</label>
+            <div style="margin: 8px auto;width: 90%;text-align: center;">
+                <label style="font-size: 20px;margin-right: 21px;" for="password">password</label>
                 <input type="text" name="password">
             </div>
 
             <div>
-                <button style="margin-top: 15px;" type=" submit">Submit</button>
+                <button style="margin-top: 15px;background-color: aqua;height: 30px;width: 90px;font-size: 20px;margin-bottom: 15px;cursor: pointer;" type=" submit">Submit</button>
             </div>
         </form>
     </div>
@@ -123,3 +122,36 @@ $('.loginsignupbutton').click(function(){
 
 </script>
 {% endblock js %}
+{% block footer %}
+<div class="footermain" style="background-color: #00FFFF ;width:100%;display: flex;flex-direction: column;margin-top: 10px;align-items: center;align-content: center;position: fixed;left: 0px;bottom: 0px;">
+    <div style="margin: 10px auto; color: grey;padding: 0px 10px;">
+        <p>© Copyright 2021 Bloggers Site &ensp;|&ensp;  All Rights Reserved  &ensp;|&ensp;  Legal Disclaimer  &ensp;</p>
+    </div>
+    <div>
+        <p style="margin-bottom: 10px;">Share Us</p>
+    </div>
+    <div class="mediashares">
+        <div class="whatsappshare shareicondiv">
+            {% load static %}
+            <a href="whatsapp://send?text=http://127.0.0.1:8000/" target="_blank" rel="nofollow"><img class="whatsappshareimage shareicon" src="{% static 'home/whatsapp.png' %}"></a>
+        </div>
+        <div class="linkedinshare shareicondiv">
+            {% load static %}
+            <a href="https://www.linkedin.com/shareArticle?url=http://127.0.0.1:8000/&title=" target="_blank" rel="nofollow"><img class="linkedinshareimage shareicon" src="{% static 'home/linkedin.png' %}">
+            </a>
+
+        </div>
+        <div class="twittershare shareicondiv">
+            {% load static %}
+            <a href="https://twitter.com/intent/tweet?url=http://127.0.0.1:8000/&text=&via=" target="_blank" rel="nofollow"><img class="twittershareimage shareicon" src="{% static 'home/twitter.png' %}">
+            </a>
+
+        </div>
+        <div class="facebookshare shareicondiv">
+            {% load static %}
+            <a href="https://www.facebook.com/sharer.php?u=http://127.0.0.1:8000/" target="_blank" rel="nofollow"><img class="facebookshareimage shareicon" src="{% static 'home/facebook.png' %}">
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock footer %}

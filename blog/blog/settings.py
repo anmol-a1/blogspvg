@@ -1,5 +1,15 @@
+
 import os
 from django.contrib.messages import constants as messages
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER =' '
+EMAIL_HOST_PASSWORD =' '
+EMAIL_USE_SSL=False
+
 """
 Django settings for blog project.
 
@@ -13,7 +23,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from django.conf import settings
 from django.conf.urls.static import static
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +33,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c!5ukj(%hm2^jv$f82zymz#e8e%f2tmfr-wtz+y*s41r@a+mn-'
+
+#Enter your secret key below
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,8 +92,13 @@ WSGI_APPLICATION = 'blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',   # Or an IP Address that your DB is hosted on
+        'PORT': '3306',
+        'OPTION': {'init_command':"SET sql_mode='STRICT_TRANS_TABLE',"},
     }
 }
 

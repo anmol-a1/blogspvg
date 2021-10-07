@@ -2,6 +2,7 @@
     *{
         margin: 0px;
         padding: 0px;
+        box-sizing: border-box;
     }
 
     /* .blogmaininner a {
@@ -66,6 +67,7 @@
     }
     .formdivcontainer-comment{
         margin-top: 15px;
+        width: 100%;
     }
     .innertexthomecard{
         font-size: 18px;
@@ -100,6 +102,7 @@
         display: flex;
         margin-left: 10px;
         color: red;
+        z-index: 2;
     }
 
     .likebutton{
@@ -257,8 +260,8 @@
                 <h2>Auhor Name : {{post.author_name}}</h2>
                 <form method="GET" class="formdivlike" action="/bloglikes/{{post.title}}">
                     {% csrf_token %}
-                    <p class="liketag" >&#10084;  {{post.likes}}</p>
-                    <button class="likebutton" type="submit">Anm</button>
+                    <p style="cursor: pointer;" class="liketag" >&#10084;  {{post.likes}}</p>
+                    <button style="cursor: pointer;" class="likebutton" type="submit">Anm</button>
                     
                 </form>
                 
@@ -274,9 +277,9 @@
         {% if user.is_authenticated %}
         <form action="/blog/postcomment/" method="post" class="formdivcontainer-comment">
             {% csrf_token %}
-            <input type="text" name="comment" placeholder="write your comment here">
+            <input type="text" style="width: 70%;margin-right: 7%;height: 30px;" name="comment" placeholder="write your comment here">
             <input type="text" style="display: none;" name="postidno" value="{{post.idno}}" placeholder="write your comment here">
-            <button type="submit">Post Comment</button>        
+            <button type="submit" style="width: 20%;height: 30px;" >Post Comment</button>        
         </form>
         {% else %}
              <p style="margin-top: 15px;" >Please Login to post comment</p>
@@ -311,6 +314,7 @@
 {% endblock body %}
 
 {% block js %}
+
 <script>
 function myFunction() {
     var comment = document.getElementById("comments");
@@ -326,3 +330,36 @@ function myFunction() {
 </script>
 
 {% endblock js %}
+{% block footer %}
+<div class="footermain" style="background-color: #00FFFF ;width:100%;display: flex;flex-direction: column;margin-top: 10px;align-items: center;align-content: center;">
+    <div style="margin: 10px auto; color: grey;padding: 0px 10px;">
+        <p>© Copyright 2021 Bloggers Site &ensp;|&ensp;  All Rights Reserved  &ensp;|&ensp;  Legal Disclaimer  &ensp;</p>
+    </div>
+    <div>
+        <p style="margin-bottom: 10px;">Share Blog</p>
+    </div>
+    <div class="mediashares">
+        <div class="whatsappshare shareicondiv">
+            {% load static %}
+            <a href="whatsapp://send?text=http://127.0.0.1:8000/blog/{{post.title}}" target="_blank" rel="nofollow"><img class="whatsappshareimage shareicon" src="{% static 'home/whatsapp.png' %}"></a>
+        </div>
+        <div class="linkedinshare shareicondiv">
+            {% load static %}
+            <a href="https://www.linkedin.com/shareArticle?url=http://127.0.0.1:8000/blog/{{post.title}}&title=" target="_blank" rel="nofollow"><img class="linkedinshareimage shareicon" src="{% static 'home/linkedin.png' %}">
+            </a>
+
+        </div>
+        <div class="twittershare shareicondiv">
+            {% load static %}
+            <a href="https://twitter.com/intent/tweet?url=http://127.0.0.1:8000/blog/{{post.title}}&text=&via=" target="_blank" rel="nofollow"><img class="twittershareimage shareicon" src="{% static 'home/twitter.png' %}">
+            </a>
+
+        </div>
+        <div class="facebookshare shareicondiv">
+            {% load static %}
+            <a href="https://www.facebook.com/sharer.php?u=http://127.0.0.1:8000/blog/{{post.title}}" target="_blank" rel="nofollow"><img class="facebookshareimage shareicon" src="{% static 'home/facebook.png' %}">
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock footer %}

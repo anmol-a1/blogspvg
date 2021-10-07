@@ -1,8 +1,14 @@
 
 <style>
-    .form{
-        text-align:center;
+    .contactform{
+        align-items: center;
         margin:20px auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .contactdiv{
+        margin: 10px;
     }
 
 </style>
@@ -10,30 +16,27 @@
 {% block contactactive %} active {% endblock contactactive %}
 
 {% block body %}
-
-    <form class="form" action="/contact/" method="post" >
+    <h2 style="text-align: center;margin: 10px auto;">Contact Us</h2>
+    <form class="contactform" action="/contact/" method="post" >
     {% csrf_token %}
+    <div class="contactdiv">
+    <label for="name" style="margin-right: 40px;">Name :</label>
+    <input type="text" name="name" id=""></div>
+    <div class="contactdiv">
+    <label for="email" style="margin-right: 43px;"> Email :</label>
+    <input type="email" name="email" id=""></div>
+    <div class="contactdiv">
+    <label for="phone_no" style="margin-right: 13px;"> Phone_no :</label>
+    <input type="text" name="phone_no" id=""></div>
+    <div class="contactdiv">
+    <label for="issue" style="margin-right: 13px;">Describe your issue :</label>
     <br>
     <br>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="">
-     <br>
-     <br>
-    <label for="email"> Email</label>
-    <input type="email" name="email" id="">
-    <br>
-    <br>
-    <label for="phone_no"> Phone_no</label>
-    <input type="text" name="phone_no" id="">
-    <br>
-    <br>
-    <label for="issue">Describe your issue</label>
-    <br>
-    <textarea name="issue" id="issue" cols="30" rows="10"></textarea>
-    <br>
-    <br>
-    <br>
-    <button id="sub" type="submit">Submit</button>
+
+    <textarea name="issue" id="issue" cols="30" rows="10"></textarea></div>
+    <div class="contactdiv">
+        <button id="sub" style="margin-top: 15px;background-color: aqua;height: 30px;width: 90px;font-size: 20px;margin-bottom: 15px;cursor: pointer;" type=" submit">Submit</button>
+    </div>
 
     </form>
 
@@ -45,6 +48,39 @@
 </script>
 
 {% endblock js %}
+{% block footer %}
+<div class="footermain" style="background-color: #00FFFF ;width:100%;display: flex;flex-direction: column;margin-top: 10px;align-items: center;align-content: center;position: fixed;left: 0px;bottom: 0px;">
+    <div style="margin: 10px auto; color: grey;padding: 0px 10px;">
+        <p>© Copyright 2021 Bloggers Site &ensp;|&ensp;  All Rights Reserved  &ensp;|&ensp;  Legal Disclaimer  &ensp;</p>
+    </div>
+    <div>
+        <p style="margin-bottom: 10px;">Share Us</p>
+    </div>
+    <div class="mediashares">
+        <div class="whatsappshare shareicondiv">
+            {% load static %}
+            <a href="whatsapp://send?text=http://127.0.0.1:8000/" target="_blank" rel="nofollow"><img class="whatsappshareimage shareicon" src="{% static 'home/whatsapp.png' %}"></a>
+        </div>
+        <div class="linkedinshare shareicondiv">
+            {% load static %}
+            <a href="https://www.linkedin.com/shareArticle?url=http://127.0.0.1:8000/&title=" target="_blank" rel="nofollow"><img class="linkedinshareimage shareicon" src="{% static 'home/linkedin.png' %}">
+            </a>
+
+        </div>
+        <div class="twittershare shareicondiv">
+            {% load static %}
+            <a href="https://twitter.com/intent/tweet?url=http://127.0.0.1:8000/&text=&via=" target="_blank" rel="nofollow"><img class="twittershareimage shareicon" src="{% static 'home/twitter.png' %}">
+            </a>
+
+        </div>
+        <div class="facebookshare shareicondiv">
+            {% load static %}
+            <a href="https://www.facebook.com/sharer.php?u=http://127.0.0.1:8000/" target="_blank" rel="nofollow"><img class="facebookshareimage shareicon" src="{% static 'home/facebook.png' %}">
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock footer %}
 
 
 

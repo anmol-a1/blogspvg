@@ -18,6 +18,9 @@ from django import urls
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('',views.index,name="home"),
@@ -32,5 +35,8 @@ urlpatterns = [
     path('blog/postcomment/',views.postcomment,name="postcomment"),
     path('blog/<str:title>',views.blog,name="blog"),
     path('bloglikes/<str:title>',views.bloglikes,name="bloglikes"),
-    path('search/',views.search,name="search")
-]
+    path('search/',views.search,name="search"),
+    path('saveblogpost/',views.saveblogpost,name='saveblogpost'),
+    path('forgotpassword/',views.forgotpassword,name='forgotpassword'),
+    path('changepassword/<token>',views.changepassword,name='changepassword')
+]+ static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
